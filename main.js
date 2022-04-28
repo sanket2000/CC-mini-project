@@ -1,6 +1,5 @@
 const editor = ace.edit('editor');
 // const input = ace.edit('input');
-API_URL = prompt("Enter function API url")
 
 $(function() {
   // configure ace editor
@@ -13,7 +12,7 @@ $(function() {
   // input.setFontSize('14px');
 
 });
-
+API_URL = prompt("Enter function API url")
 // handle form submit
 $('form').on('submit', (event) => {
   event.preventDefault();
