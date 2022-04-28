@@ -1,5 +1,6 @@
 const editor = ace.edit('editor');
 // const input = ace.edit('input');
+API_URL = prompt("Enter function API url")
 
 $(function() {
   // configure ace editor
@@ -19,15 +20,16 @@ $('form').on('submit', (event) => {
   const answer = editor.getSession().getValue();
   // const input = input.getSession().getValue();
   // const payload = { answer: answer, input: input };
-  const payload = { answer: answer };
-  grade(payload);
+  // const payload = { answer: answer };
+  const payload = answer;
+  grade2(payload);
 });
 
 // ajax request
 function grade(payload) {
   $.ajax({
     method: 'POST',
-    url: 'your_apigateway_endpoint_url',
+    url: "your api",
     dataType: 'json',
     contentType: 'application/json',
     data: JSON.stringify(payload)
@@ -38,5 +40,21 @@ function grade(payload) {
   .catch((err) => {
     $('.answer').html('Something went terribly wrong!');
     console.log(err);
+  });
+}
+
+function grade2(payload) {
+  console.log(JSON.stringify(payload))
+  const response = fetch(url = API_URL, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.body)
+    a = document.getElementsByClassName("answer")
+    // printss = data.body.replaceAll("\n", "<br>")
+    // printss = data.body.replaceAll(" ", "&nbsp;")
+    a[0].innerHTML = data.body.replaceAll("\n", "<br>")
   });
 }
